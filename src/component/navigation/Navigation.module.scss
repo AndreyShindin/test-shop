@@ -1,0 +1,28 @@
+.navigation {
+    border-bottom: 1px solid rgb(174, 174, 174);
+}
+.list {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.item {
+    transition: 0.2s;
+    border: 1px solid rgb(174, 174, 174);
+    border-bottom: none;
+    &:hover {
+        background-color: rgb(199, 193, 193);
+    }
+    &:active {
+        background-color: antiquewhite;
+    }
+}
+
+.link {
+    display: inline-block;
+    padding: 10px 60px;
+    font-size: 24px;
+    color: black;
+}

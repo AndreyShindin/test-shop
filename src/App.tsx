@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Home from './routes/home/Home';
+import Header from './routes/header/Header';
+import LivingRoom from './routes/living-room/LivingRoom';
+import BedRoom from './routes/bed-room/BedRoom';
+import Kitchen from './routes/kitchen/Kitchen';
+import BathRoom from './routes/bathroom/BathRoom';
+import Garden from './routes/garden/Garden';
+import User from './routes/user/User';
+import Wardrobe from './routes/wardrobe/Wardrobe';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App"> 
+      <Routes>
+        <Route path='/' element={<Header/>}>
+          <Route index element={<Home/>}/>
+          <Route path='livingroom' element={<LivingRoom/>}/>
+          <Route path='bedroom' element={<BedRoom/>}/>
+          <Route path='kitchen' element={<Kitchen/>}/>
+          <Route path='bathroom' element={<BathRoom/>}/>
+          <Route path='wardrobe' element={<Wardrobe/>}/>
+          <Route path='garden' element={<Garden/>}/>
+          <Route path='user' element={<User/>}/>
+        </Route>
+      </Routes>
     </div>
   );
 }
