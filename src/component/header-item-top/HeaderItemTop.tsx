@@ -9,6 +9,7 @@ import {
 import BurgerMenu from '../burger-menu/BurgerMenu';
 import Cart from '../cart/Cart';
 import ChatHelp from '../chat-help/ChatHelp';
+import Search from '../search/Search';
 import styles from './HeaderItemTop.module.scss';
 
 const HeaderItemTop = () => {
@@ -58,10 +59,7 @@ const HeaderItemTop = () => {
                     <h2 className={styles['contact-name']}>Контакт центр</h2>
                     <a className={styles['contact-ref']} href="tel:800000000">+890231232134</a>
                 </div>
-                <div className={styles['search-container']}>
-                    <input className={styles.search} type="text" placeholder='Поиск'/>
-                    <button className={styles['search-button']}>Поиск</button>
-                </div>
+                <Search />
             </div>
         </div>
     )
