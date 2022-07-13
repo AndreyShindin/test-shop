@@ -10,9 +10,18 @@ const Product = (props: any) => {
     return (
         <li className={styles.item}>
             <div className={styles.product}>
-                <img className={styles.image} src={imageUrl} alt="" />
+                <div className={styles['container-image']}>
+                    <a href="#">
+                        <img className={styles.image} src={imageUrl} alt="" />
+                    </a>
+                </div>
+                
                 <div className={styles.type}>
-                    <span className={styles.name}>{name}</span>
+                    <div>
+                        <a href="#">
+                            <span className={styles.name}>{name}</span>
+                        </a>
+                    </div>         
                     <p className={styles.description}>{description}</p>
                     <span className={styles.price}>Цена: {priceRate} {currency}</span>
                 </div>

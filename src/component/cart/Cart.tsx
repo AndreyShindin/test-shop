@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { NavLink, useMatch } from 'react-router-dom';
 import { IProduct } from '../../store/cartReducer';
 import CartItem from '../cartItem/CartItem';
 import styles from './Cart.module.scss';
@@ -14,6 +15,7 @@ const Cart = () => {
     } else {
         forex = 'e'
     }
+    
     return (
         <div className={styles.cart}>
             <h3 className={styles.head}>Корзина покупок</h3>
@@ -29,7 +31,7 @@ const Cart = () => {
                     })}
                 </ul>
             : <h5 className={styles.non}>Корзина пуста</h5>}  
-            <button className={styles.button}>Посмотреть весь список покупок</button>
+            <NavLink to='/cart' className={styles.button}>Посмотреть весь список покупок</NavLink>
         </div>
     )
 }

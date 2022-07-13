@@ -9,6 +9,7 @@ import BathRoom from './routes/bathroom/BathRoom';
 import Garden from './routes/garden/Garden';
 import User from './routes/user/User';
 import Wardrobe from './routes/wardrobe/Wardrobe';
+import CartRoute from './routes/cart-route/CartRoute';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='wardrobe' element={<Wardrobe/>}/>
           <Route path='garden' element={<Garden/>}/>
           <Route path='user' element={<User/>}/>
+          <Route path='cart' element={<CartRoute/>}/>
         </Route>
       </Routes>
     </div>
