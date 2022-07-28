@@ -1,11 +1,9 @@
-import Client from '../../component/Client/Client';
+import User from '../../component/User/User';
 import styles from './Use.module.scss';
 
-const User = () => {
+const UserRouter = () => {
     return(
-        <div>
-            <Client />
-        </div>
+        <User />
     )
 }
 

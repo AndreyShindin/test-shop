@@ -1,21 +1,12 @@
+import { Button, FormControl, Grid, MenuItem, Paper, Select, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Product from '../product/Product';
-import styles from './Content.module.scss';
 
 const Content = (props: any) => {
     const [stateSelect, changeSelect] = useState('default');
-    const {currency, rate} = useSelector((state: any) => state.header)
-
-    let forex = 'руб';
-    if(currency == 'rub'){
-        forex = 'руб'
-    } else if (currency == 'usd') {
-        forex = '$'
-    } else {
-        forex = 'e'
-    } 
-
+    const navigate = useNavigate();
+    
     let sortProdocts = [...props.products];
     if(stateSelect === "ascending"){
         sortProdocts.sort(function (a: any, b: any) {
@@ -42,35 +33,43 @@ const Content = (props: any) => {
         sortProdocts.reverse();
     }
 
+    const goToUser = () => {
+        navigate('/product')
+    }
     
 
     return (
-        <div className={styles.conatiner}>
-            <div className={styles.filter}>
-                <select className={styles['filter-select']} value={stateSelect} onChange={(e) => changeSelect(e.target.value)}>
-                    <option value="default">По умолчанию</option>
-                    <option value="ascending">По цене, по возрастанию</option>
-                    <option value="descending">По цене, по убыванию</option>
-                </select>
-                <button className={styles['filter-button']}>
+        <Paper sx={{p: '10px'}}>
+            <Typography variant='h3' fontSize={30} align='center'>
+                {sortProdocts[0].name}
+            </Typography>
+            <Stack direction='row' sx={{justifyContent: 'space-between'}} mb={3}>
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <Select
+                    defaultValue={stateSelect}
+                    value={stateSelect}
+                    onChange={(e) => changeSelect(e.target.value)}
+                    displayEmpty
+                    inputProps={{ 'aria-label': 'Without label' }}
+                    size='small'>
+                        <MenuItem value="default">По умолчанию</MenuItem>
+                        <MenuItem value="ascending">По цене, по возрастанию</MenuItem>
+                        <MenuItem value="descending">По цене, по убыванию</MenuItem>
+                    </Select>
+                </FormControl>
+                <Button onClick={goToUser}>
                     Фильтр
-                </button>
-            </div>
-            <div className={styles.content}>
-                <ul className={styles.list}>
-                    {sortProdocts.map((product: any) => {
-                        return (
-                            <Product key={product.id} product={product} currency={forex} rate={rate}/>
-                        )
-                    })}
-                </ul>
-            </div>
-        </div>
+                </Button>
+            </Stack>
+            <Grid container spacing={3}>
+                {sortProdocts.map((product: any) => {
+                    return (
+                        <Product key={product.id} product={product}/>
+                    )
+                })}
+            </Grid>
+        </Paper>
     )
 }
 
 export default Content
-
-function sortProducts() {
-    throw new Error('Function not implemented.');
-}

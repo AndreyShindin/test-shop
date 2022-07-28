@@ -6,20 +6,16 @@ export interface IMessage {
 }
 
 export interface IstateHead {
-    language: string,
-    currency: string,
+    isActive: boolean,
     stateChat: boolean,
     stateCart: boolean,
-    rate: number
     helpMessages: Array<IMessage>
 }
 
 const initialState: IstateHead = {
-    language: 'Язык',
-    currency: 'руб',
+    isActive: false,
     stateChat: false,
     stateCart: false,
-    rate: 1,
     helpMessages: [
         {id: Date.now(), text: 'Здравствуйте чем могу помочь?'},
     ],
@@ -32,29 +28,6 @@ const headerReducer = createSlice({
     name: 'header-reduser',
     initialState,
     reducers: {
-        changeLanguage: (state, action) => {
-            state.language = action.payload
-        },
-        changeCurrency: (state, action) => {
-            state.currency = action.payload;
-            switch (action.payload) {
-                case 'rub': {
-                    state.rate = 1
-                    break
-                }
-                case 'usd': {
-                    state.rate = 0.0167
-                    break
-                }
-                case 'eur': {
-                    state.rate = 0.0158
-                    break
-                }
-                default:
-                    state.rate = 1
-                    break;
-            }
-        },
         openChats: (state) => {
             state.stateChat = !state.stateChat
         },
@@ -70,8 +43,7 @@ const headerReducer = createSlice({
 
 export default headerReducer.reducer;
 
-export const { changeLanguage, 
-    changeCurrency, 
+export const { 
     openChats, 
     sendMessage,
     openCartPreview } = headerReducer.actions;

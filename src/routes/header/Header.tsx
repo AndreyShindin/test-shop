@@ -1,15 +1,16 @@
 import { Fragment } from 'react';
-import HeaderItemTop from '../../component/header-item-top/HeaderItemTop';
-import RouterNav from '../routerNav/RouterNav';
-import styles from './Header.module.scss';
+import { Outlet } from 'react-router-dom';
+import HeaderPage from '../../component/header-page/HeaderPage';
 
 const Header = () => {
     return (
         <Fragment>
             <header>
-                <HeaderItemTop />
+                <HeaderPage />
             </header>
-            <RouterNav />
+            <main>
+                <Outlet />
+            </main>
         </Fragment>
     )
 }

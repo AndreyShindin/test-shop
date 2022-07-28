@@ -1,33 +1,45 @@
+import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { addCartItem } from '../../store/cartReducer';
 import styles from './Product.module.scss';
 
 const Product = (props: any) => {
     const dispatch = useDispatch();
-    const { name, price, imageUrl, description } = props.product;
-    const {currency, rate} = props;
-    const priceRate =Math.ceil(price * rate);
+    const { name, price, imageUrl, description, id } = props.product;
     return (
-        <li className={styles.item}>
-            <div className={styles.product}>
-                <div className={styles['container-image']}>
-                    <a href="#">
-                        <img className={styles.image} src={imageUrl} alt="" />
-                    </a>
-                </div>
-                
-                <div className={styles.type}>
-                    <div>
-                        <a href="#">
-                            <span className={styles.name}>{name}</span>
-                        </a>
-                    </div>         
-                    <p className={styles.description}>{description}</p>
-                    <span className={styles.price}>Цена: {priceRate} {currency}</span>
-                </div>
-                <button className={styles.delete} onClick={() => dispatch(addCartItem(props))}>Добавить в корзину</button>
-            </div>
-        </li>
+        <Grid xs={8} item md={3} sm={6}>
+            <Card sx={{ minxWidth: 345 }}>
+                <CardMedia
+                    component='img'
+                    height='140'
+                    image={imageUrl} 
+                    alt={name}
+                />
+                <CardContent sx={{p: '30px'}}>
+                    <NavLink to={`/product/${id}`}>
+                        <Typography variant='h6'>
+                            {name}
+                        </Typography>
+                    </NavLink>
+                    <Typography variant='body2' sx={{maxHeight: '100px'}}>
+                        {description}
+                    </Typography>
+                    <Typography component='span'>
+                        Цена: {price} руб
+                    </Typography>
+                </CardContent>
+                <CardActions sx={{justifyContent: 'space-around'}}>
+                    <Button size='small'>В избранное</Button>
+                    <Button 
+                        size='small'
+                        variant='contained'
+                        onClick={() => dispatch(addCartItem(props))}>
+                        Купить
+                    </Button>
+                </CardActions>
+            </Card>
+        </Grid>
     )
 }
 

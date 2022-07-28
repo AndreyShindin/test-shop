@@ -3,6 +3,7 @@ import cartReducer from "./cartReducer"
 import headerReduser from "./headerReduser"
 import homeReducer from "./homeReducer"
 import mainReducer from "./mainReducer"
+import userReducer from "./userReducer"
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         cart: cartReducer,
         home: homeReducer,
         main: mainReducer,
+        user: userReducer,
     }
 })
 

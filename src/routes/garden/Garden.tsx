@@ -6,9 +6,7 @@ const Garden = () => {
     const { garder } = useSelector((state: any) => state.main);
     
     return (
-        <div>
-            <MainComponent products={garder}/>
-        </div>
+        <MainComponent products={garder}/>
     )
 }
 

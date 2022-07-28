@@ -1,10 +1,10 @@
-import ProductCart from '../../component/productCart/ProductCart';
+import ProductPage from '../../component/productPage/ProductPage';
 import styles from './Cart.module.scss';
 
 const CartRoute = () => {   
     return (
         <div>
-            <ProductCart />
+            <ProductPage />
         </div>
     )
 }
