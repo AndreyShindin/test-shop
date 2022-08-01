@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { IstateHead, openCartPreview } from '../../store/headerReduser';
-import Cart from '../cart/Cart';
 import SingIn from '../login/Login';
 
 export default function HeaderPage() {
@@ -20,14 +19,16 @@ export default function HeaderPage() {
     const dispatch = useDispatch();
 
     const handleOpen = () => { 
-        isActive ? navigate('/user') : setOpen(true);
+        isActive ? navigate('/user/client') : setOpen(true);
     }
 
     const handleClose = () => {
         setOpen(false)
     }
 
-
+    const handleAdmin = () => {
+        navigate('/admin')
+    }
     
     
     const navigationMenu = [
@@ -49,7 +50,10 @@ export default function HeaderPage() {
                 </NavLink>
                 <Search />
                 <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                    {isActive ? <IconButton size="large" color="inherit">
+                    {isActive ? <Button color='inherit' onClick={handleAdmin}>
+                        Панель администратора
+                    </Button> : null}
+                    {isActive ? <IconButton size="large" color="inherit" onClick={() => navigate('/user/favorite')}>
                         <Badge badgeContent={4} color="error">
                             <FavoriteIcon />
                         </Badge>
@@ -57,12 +61,12 @@ export default function HeaderPage() {
                     <IconButton
                     size="large"
                     color="inherit"
-                    onClick={() => dispatch(openCartPreview())}
+                    onClick={() => navigate('/user/cart')}
                     >
                         <Badge badgeContent={17} color="error">
                             <ShoppingBasketIcon />
                         </Badge>
-                        {stateCart && <Cart />}
+                        {/* {stateCart && <Cart />} */}
                     </IconButton>
                     <IconButton
                     size="large"
@@ -73,21 +77,13 @@ export default function HeaderPage() {
                     </IconButton>
                     <SingIn open={open} close={handleClose}/>
                 </Box>
-                <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                    <IconButton
-                    size="large"
-                    color="inherit"
-                    >
-                        <More />
-                    </IconButton>
-                </Box>
             </Toolbar>
             <Toolbar >
                 <nav>
                     <Stack direction='row' spacing={7} ml={27}>
-                        {navigationMenu.map((item) => {
+                        {navigationMenu.map((item, index) => {
                             return (
-                                <NavLink to={item.href}>
+                                <NavLink key={item.href} to={item.href}>
                                     <Button variant='text' sx={{color: 'white'}}>
                                         {item.name}
                                     </Button>

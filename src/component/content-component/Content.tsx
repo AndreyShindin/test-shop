@@ -1,13 +1,22 @@
-import { Button, FormControl, Grid, MenuItem, Paper, Select, Stack, Typography } from '@mui/material';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FormControl, Grid, MenuItem, Paper, Select, Stack, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { fetchProduct } from '../../store/mainReducer';
 import Product from '../product/Product';
 
-const Content = (props: any) => {
+const Content = () => {
     const [stateSelect, changeSelect] = useState('default');
-    const navigate = useNavigate();
     
-    let sortProdocts = [...props.products];
+    const local = useLocation().pathname;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchProduct(local))
+    }, [])
+    const { products } = useSelector((state: any) => state.main)
+    
+    
+    let sortProdocts = products;
     if(stateSelect === "ascending"){
         sortProdocts.sort(function (a: any, b: any) {
             if (a.price > b.price) {
@@ -33,9 +42,6 @@ const Content = (props: any) => {
         sortProdocts.reverse();
     }
 
-    const goToUser = () => {
-        navigate('/product')
-    }
     
 
     return (
@@ -57,9 +63,6 @@ const Content = (props: any) => {
                         <MenuItem value="descending">По цене, по убыванию</MenuItem>
                     </Select>
                 </FormControl>
-                <Button onClick={goToUser}>
-                    Фильтр
-                </Button>
             </Stack>
             <Grid container spacing={3}>
                 {sortProdocts.map((product: any) => {

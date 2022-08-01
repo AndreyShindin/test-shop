@@ -31,7 +31,7 @@ export default function SignInForm(props: any) {
 
   const handleNavigate = () => {
     dispatch(inputUser())
-    navigate('/user');
+    navigate('/user/client');
     props.close();
   }
 

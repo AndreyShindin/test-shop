@@ -24,7 +24,7 @@ export default function SignUpForm(props: any) {
   };
 
   const handleNavigate = () => {
-    navigate('/user');
+    navigate('/user/client');
     props.close();
   }
 

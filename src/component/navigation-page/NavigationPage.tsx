@@ -1,24 +1,27 @@
-import { Box, Paper, Stack, Typography } from '@mui/material';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { StringMappingType } from 'typescript';
-import styles from './NavigationPage.module.scss';
+import { Button, ButtonGroup, Paper, Stack, Typography } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 
 const NavigationPage = (props: any) => {
-    const mainLink = useLocation().pathname
-    const navMenu = props.navMenu;
+    const { navMenu } = props;
     return (
         <Stack spacing={3}>
             <Typography variant='h6' align='center'>Меню</Typography>
             <Paper>
-                <Stack spacing={3} p={3} sx={{width: '200px'}}>
+                <ButtonGroup orientation='vertical'>
                     {navMenu.map((item: any, index: number) => {
                         return (
-                            <Box key={item.name.length+index}>
-                                <NavLink to={`/${mainLink}/${item.link}`}>{item.name}</NavLink>
-                            </Box>
+                            <Button 
+                                key={item.id}  
+                                sx={{padding: '10px 45px'}} 
+                                variant='text' 
+                                fullWidth
+                                >
+                                {item.name}
+                            </Button>
                         )
                     })}
-                </Stack>
+                </ButtonGroup>
+                <Outlet />
             </Paper>
         </Stack>
     )

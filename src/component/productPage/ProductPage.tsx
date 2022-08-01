@@ -1,19 +1,30 @@
 import { Button, Container, FormControl, FormLabel, Grid, ImageList, ImageListItem, RadioGroup, Stack, Typography, FormControlLabel, Radio, Box} from '@mui/material';
-import { useState } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { addCartItem } from '../../store/cartReducer';
+import { useNavigate, useParams } from 'react-router-dom';
+import { addProductFavorite, addProductBasket } from '../../store/now/productReducer';
 import DrawerAddres from '../drawer-addres/DrawerAddres';
 
 
 
 
 const ProductPage = () => {
-    const prodCart = {id: 1, name: 'Кровать', price: 23463, imageUrl: 'https://i.pinimg.com/736x/58/be/d5/58bed5c15abf833f5229928bdf4eb5c0--couch.jpg', description: ''}
-    
-    const [drawerOpen, setDraweOpen] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const idProd = useParams();
+
+    const [drawerOpen, setDraweOpen] = useState(false);
+    const [colorProd, setColor] = useState('');
+
+    const prodCart = {id: 1, name: 'Кровать', price: 23463, imageUrl: 'https://i.pinimg.com/736x/58/be/d5/58bed5c15abf833f5229928bdf4eb5c0--couch.jpg', description: '', avColor: [{idColor: 'yellow', color:'Желтый'}, {idColor: 'blue', color:'Синий'}, {idColor: 'red', color:'Красный'},]}
+    const itemData = [
+        {img: 'https://img2.goodfon.ru/original/1280x800/f/39/gostinnaya-divan-kresla-stol.jpg', title: 'Title'},
+        {img: 'https://eskipaper.com/images/kitchen-wallpaper-10.jpg', title: 'Title'},
+        {img: 'https://mebelvenera.ru/upload/iblock/92f/stenka-treyd_1-_1_.jpg', title: 'Title'},
+
+    ];
+
     const handleNavigete = () => {
         navigate(-1)
     }
@@ -21,12 +32,25 @@ const ProductPage = () => {
     const handleClose = () => {
         setDraweOpen(false)
     }
-    const itemData = [
-        {img: 'https://img2.goodfon.ru/original/1280x800/f/39/gostinnaya-divan-kresla-stol.jpg', title: 'Title'},
-        {img: 'https://eskipaper.com/images/kitchen-wallpaper-10.jpg', title: 'Title'},
-        {img: 'https://mebelvenera.ru/upload/iblock/92f/stenka-treyd_1-_1_.jpg', title: 'Title'},
 
-    ]
+    const addFavoriteProd = () => {
+        if (colorProd) {
+            dispatch(addProductFavorite({colorProd, ...prodCart}))
+        }  
+    }
+
+    const addBasketProd = () => {
+        if (colorProd) {
+            dispatch(addProductBasket({colorProd, ...prodCart}))
+        }  
+    }
+
+    const changeColor = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setColor(event.target.value)
+    }  
+    
+    
+   
     return (
         <Container sx={{mt: 3}}>
                 <Button onClick={handleNavigete}>
@@ -85,27 +109,40 @@ const ProductPage = () => {
                     </Grid>
                     <Grid xs={4} item>
                         <Stack spacing={3}>
-                            <Button fullWidth variant='outlined'> 
+                            <Button 
+                                fullWidth 
+                                variant='outlined'
+                                onClick={addFavoriteProd}
+                                > 
                                 Добавить в избранное
                             </Button>
                             <Typography variant='h3'>
-                                Имя товара
+                                {prodCart.name}
                             </Typography>
                             <Typography variant='subtitle2'>
-                                Прайс цена руб
+                                {prodCart.price} руб
                             </Typography>
-                            <FormControl>
-                                <FormLabel id='color'>
+                            <FormControl required>
+                                <FormLabel id='color' error={!colorProd}>
                                     Выберите цвет
                                 </FormLabel>
-                                {/* value={first} onChange={handleChange} */}
-                                <RadioGroup name='color' row>
-                                    <FormControlLabel control={<Radio size='small'/>} label='цвет1' value='1'/>
-                                    <FormControlLabel control={<Radio size='small'/>} label='цвет2' value='2'/>
-                                    <FormControlLabel control={<Radio size='small'/>} label='цвет3' value='3'/>
+                                <RadioGroup 
+                                    name='color' 
+                                    row
+                                    value={colorProd} 
+                                    onChange={changeColor}>
+                                    {prodCart.avColor.map((item) => {
+                                        return (
+                                            <FormControlLabel control={<Radio size='small'/>} label={item.color} value={item.idColor}/>
+                                        )
+                                    })}
                                 </RadioGroup>
                             </FormControl>
-                            <Button fullWidth variant='contained' onClick={() => dispatch(addCartItem(prodCart))}>
+                            <Button 
+                                fullWidth 
+                                variant='contained' 
+                                onClick={addBasketProd}
+                                >
                                 В корзину
                             </Button>
                             <Button onClick={() => setDraweOpen(true)}>

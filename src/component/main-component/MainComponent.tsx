@@ -1,25 +1,26 @@
-import { Box, Stack } from '@mui/material';
+import { Box, CircularProgress, Stack } from '@mui/material';
+import { useSelector } from 'react-redux';
 import Content from '../content-component/Content';
 import NavigationPage from '../navigation-page/NavigationPage';
-import styles from './MainComponent.module.scss';
+import styles from './nComponent.module.scss';
 
-const MainComponent = (props: any) => {
-    const products = props.products;
+const nComponent = (props: any) => {
+    // const products = useSelector((state: any) => state.main.products)
     const listMenu = [
-        {name: 'Первое', link: 'odin', mainLink: 'user'},
-        {name: 'Второе', link: 'dwa', mainLink: 'user'},
-        {name: 'Третие', link: 'tri', mainLink: 'user'},
-        {name: 'Четвертое', link: 'chetare', mainLink: 'user'},
-        {name: 'Пятое', link: 'pit', mainLink: 'user'},
+        {id: 'one',name: 'Первое'},
+        {id: 'two',name: 'Второе'},
+        {id: 'three',name: 'Третие'},
+        {id: 'four',name: 'Четвертое'},
+        {id: 'five',name: 'Пятое'},
     ]
     return (
         <Box>
             <Stack direction='row' spacing={3} mt={4}>
                 <NavigationPage navMenu={listMenu}/>
-                <Content products={products}/>
+                <Content/>
             </Stack>
         </Box>
     )
 }
 
-export default MainComponent
+export default nComponent

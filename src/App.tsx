@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './routes/home/Home';
 import Header from './routes/header/Header';
 import LivingRoom from './routes/living-room/LivingRoom';
@@ -9,8 +9,11 @@ import Garden from './routes/garden/Garden';
 import UserRouter from './routes/user/User';
 import Wardrobe from './routes/wardrobe/Wardrobe';
 import CartRoute from './routes/cart-route/CartRoute';
+import UserContent from './component/User/UserContent';
+import Admin from './component/admin/Admin';
 
 function App() {
+  
   return (
     <div className="App"> 
       <Routes>
@@ -22,7 +25,10 @@ function App() {
           <Route path='bathroom' element={<BathRoom/>}/>
           <Route path='wardrobe' element={<Wardrobe/>}/>
           <Route path='garden' element={<Garden/>}/>
-          <Route path='user' element={<UserRouter/>}/>
+          <Route path='user' element={<UserRouter/>}>
+            <Route path=':id' element={<UserContent />}/>
+          </Route>
+          <Route path='admin' element={<Admin />}/>
           <Route path='product'>
             <Route path=':id' element={<CartRoute/>}/>
           </Route>

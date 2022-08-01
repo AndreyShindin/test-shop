@@ -1,22 +1,37 @@
-import { Box, Grid } from '@mui/material';
-import NavigationPage from '../navigation-page/NavigationPage'
+import { Box, Button, ButtonGroup, Grid, Paper, Stack, Typography } from '@mui/material';
+import { NavLink, Outlet } from 'react-router-dom';
 
 export default function User() {
   const userNav = [
-    'Пользователь',
-    'История покупок',
-    'Избранное',
+    // /client
+    {name: 'Пользователь', href: '/user/client'},
+    {name: 'История покупок', href: '/user/historybye'},
+    {name: 'Избранное', href: '/user/favorite'},
+    {name: 'Корзина', href: '/user/cart'},
   ]
   return (
-    <Box sx={{mt: 4}}>
-        <Grid container>
-            <Grid item xs={2}>
-              {/* <NavigationPage navMenu={userNav}/> */}
-            </Grid>
-            <Grid item xs={6}>
-                b
-            </Grid>
+    <Grid sx={{mt: 4}} container>
+      <Grid item xs={2}>
+        <Stack spacing={3}>
+          <Typography variant='h6' align='center'>Меню</Typography>
+            <ButtonGroup orientation='vertical' fullWidth>
+                {userNav.map((item: any, index: number) => {
+                    console.log(item)
+                    return (
+                        <NavLink 
+                            key={index} 
+                            to={item.href}
+                            >
+                            <Button variant='text'>
+                              {item.name}
+                            </Button>
+                        </NavLink>
+                    )
+                })}
+            </ButtonGroup>
+          </Stack>
         </Grid>
-    </Box>
+        <Outlet />
+    </Grid>
   )
 }

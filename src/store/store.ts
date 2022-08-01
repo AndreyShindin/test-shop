@@ -3,6 +3,7 @@ import cartReducer from "./cartReducer"
 import headerReduser from "./headerReduser"
 import homeReducer from "./homeReducer"
 import mainReducer from "./mainReducer"
+import productReducer from "./now/productReducer"
 import userReducer from "./userReducer"
 
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
         home: homeReducer,
         main: mainReducer,
         user: userReducer,
+        product: productReducer,
     }
 })
 
