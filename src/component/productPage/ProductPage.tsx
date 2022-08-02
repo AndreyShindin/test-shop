@@ -1,21 +1,26 @@
 import { Button, Container, FormControl, FormLabel, Grid, ImageList, ImageListItem, RadioGroup, Stack, Typography, FormControlLabel, Radio, Box} from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { addProductFavorite, addProductBasket } from '../../store/now/productReducer';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { addProductFavorite, addProductBasket } from '../../store/mainReducer';
 import DrawerAddres from '../drawer-addres/DrawerAddres';
+import { useEffect, useState } from 'react';
+import { fetchProduct } from '../../store/now/productReducer';
 
 
 
 
 const ProductPage = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const idProd = useParams();
-
     const [drawerOpen, setDraweOpen] = useState(false);
     const [colorProd, setColor] = useState('');
+
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const idProd = useLocation();
+
+    useEffect(() => {
+        dispatch(fetchProduct(idProd))
+    }, [])
+
 
     const prodCart = {id: 1, name: 'Кровать', price: 23463, imageUrl: 'https://i.pinimg.com/736x/58/be/d5/58bed5c15abf833f5229928bdf4eb5c0--couch.jpg', description: '', avColor: [{idColor: 'yellow', color:'Желтый'}, {idColor: 'blue', color:'Синий'}, {idColor: 'red', color:'Красный'},]}
     const itemData = [

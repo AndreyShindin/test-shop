@@ -1,19 +1,18 @@
 import { Box, Grid, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { fetchProduct } from '../../store/mainReducer';
 import Product from '../product/Product';
 import Slide from '../slider/Slide';
-import styles from './HomePresent.module.scss';
 
 const HomePresent = () => {
-    const previewProduct = [
-        {id: 1, name: 'Товар', imageUrl: 'https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg', description: 'text', price: 356},
-        {id: 2, name: 'Товар', imageUrl: 'https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg', description: 'text', price: 356},
-        {id: 3, name: 'Товар', imageUrl: 'https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg', description: 'text', price: 356},
-        {id: 4, name: 'Товар', imageUrl: 'https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg', description: 'text', price: 356},
-        {id: 5, name: 'Товар', imageUrl: 'https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg', description: 'text', price: 356},
-        {id: 6, name: 'Товар', imageUrl: 'https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg', description: 'text', price: 356},
-        {id: 7, name: 'Товар', imageUrl: 'https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg', description: 'text', price: 356},
-        {id: 8, name: 'Товар', imageUrl: 'https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg', description: 'text', price: 356},
-    ]
+    const dispatch = useAppDispatch();
+    let local = '/offers';
+    useEffect(() => {
+        dispatch(fetchProduct(local))
+    }, []);
+    const productList = local.slice(1);
+    const products = useAppSelector(state => state.main[productList]);
     return(
         <Box>
             <Box mt={10}>
@@ -24,7 +23,7 @@ const HomePresent = () => {
                     Предложения
                 </Typography>
                 <Grid container spacing={2} mt={3}>
-                    {previewProduct.map((item) => {
+                    {products.map((item: any) => {
                         return (
                             <Product key={item.id} product={item}/>
                         )

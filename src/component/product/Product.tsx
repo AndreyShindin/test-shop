@@ -1,10 +1,10 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../store/hook';
 import { NavLink } from 'react-router-dom';
-import { addProductBasket, addProductFavorite } from '../../store/now/productReducer';
+import { addProductBasket, addProductFavorite } from '../../store/mainReducer';
 
 const Product = (props: any) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const { name, price, imageUrl, description, id } = props.product;
 
     const shortDesc = (str: string) => {
@@ -34,11 +34,11 @@ const Product = (props: any) => {
                     </Typography>
                 </CardContent>
                 <CardActions sx={{justifyContent: 'space-around'}}>
-                    <Button size='small' onClick={() => dispatch(addProductFavorite(props))}>В избранное</Button>
+                    <Button size='small' onClick={() => dispatch(addProductFavorite(props.product))}>В избранное</Button>
                     <Button 
                         size='small'
                         variant='contained'
-                        onClick={() => dispatch(addProductBasket(props))}>
+                        onClick={() => dispatch(addProductBasket(props.product))}>
                         Купить
                     </Button>
                 </CardActions>

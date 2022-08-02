@@ -1,22 +1,16 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Box from '@mui/material/Box';
+import {Avatar, Button, TextField, FormControlLabel, Checkbox, Box, Typography} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
 import { DialogActions, DialogContent, DialogTitle, Stack } from '@mui/material';
 import RestoreForm from './RestoreForm';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../store/hook';
 import { inputUser } from '../../store/userReducer';
 
 
 export default function SignInForm(props: any) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [rest, setRest] = useState(false);
 

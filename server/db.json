@@ -430,5 +430,24 @@
       }},
     "avColor": [{"idColor": "yellow", "color": "Желтый"}, {"idColor": "blue", "color": "Синий"}, {"idColor": "red", "color": "Красный"}]  
     }
+  ],
+  "historybye": [
+    
+  ],
+  "favorite": [
+    
+  ],
+  "cart": [
+    
+  ],
+  "offers": [
+    {"id": 1101, "name": "Товар", "imageUrl": "https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg", "description": "text", "price": 1300},
+    {"id": 1102, "name": "Товар", "imageUrl": "https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg", "description": "text", "price": 356},
+    {"id": 1103, "name": "Товар", "imageUrl": "https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg", "description": "text", "price": 356},
+    {"id": 1104, "name": "Товар", "imageUrl": "https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg", "description": "text", "price": 356},
+    {"id": 1105, "name": "Товар", "imageUrl": "https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg", "description": "text", "price": 356},
+    {"id": 1106, "name": "Товар", "imageUrl": "https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg", "description": "text", "price": 356},
+    {"id": 1107, "name": "Товар", "imageUrl": "https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg", "description": "text", "price": 356},
+    {"id": 1108, "name": "Товар", "imageUrl": "https://i.ytimg.com/vi/X6CKO9Hm5iU/maxresdefault.jpg", "description": "text", "price": 356}
   ]
 }

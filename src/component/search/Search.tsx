@@ -1,13 +1,11 @@
-import { Box, Divider, IconButton, InputBase, Paper } from '@mui/material';
+import { IconButton, InputBase, Paper } from '@mui/material';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../store/hook';
 import SearchIcon from '@mui/icons-material/Search';
-import styles from './Search.module.scss';
-import { Directions } from '@mui/icons-material';
 
 const Search = () => {
     const [requestSearch, changeSearch] = useState('');
-    const main = useSelector((state: any) => state.main);
+    const main = useAppSelector((state) => state.main);
 
     return (
         <Paper

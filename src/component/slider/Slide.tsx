@@ -1,8 +1,7 @@
-import { Box, Container, IconButton, ImageList, Paper, Stack, Typography } from '@mui/material';
+import { Box, Container, IconButton, Typography } from '@mui/material';
 import { useState } from 'react';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import styles from './Slide.module.scss';
 
 const Slide = () => {
     const [slide, changeSlide] = useState(0)

@@ -1,6 +1,5 @@
-import { Grid, Stack, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import { useLocation, useMatch, useParams } from 'react-router-dom';
+import { Grid } from '@mui/material';
+import {useParams } from 'react-router-dom';
 import UserClient from './UserClient';
 import UserList from './UserList';
 

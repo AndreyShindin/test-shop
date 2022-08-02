@@ -1,16 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-
-export interface IMessage {
-    id: number,
-    text: string,
-}
-
-export interface IstateHead {
-    isActive: boolean,
-    stateChat: boolean,
-    stateCart: boolean,
-    helpMessages: Array<IMessage>
-}
+import { IstateHead } from "../models/models";
 
 const initialState: IstateHead = {
     isActive: false,

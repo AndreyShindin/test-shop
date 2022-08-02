@@ -1,20 +1,21 @@
 import { FormControl, Grid, MenuItem, Paper, Select, Stack, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { useLocation } from 'react-router-dom';
 import { fetchProduct } from '../../store/mainReducer';
 import Product from '../product/Product';
 
 const Content = () => {
     const [stateSelect, changeSelect] = useState('default');
-    
     const local = useLocation().pathname;
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
+    let productList = local.slice(1);
+    
     useEffect(() => {
         dispatch(fetchProduct(local))
     }, [])
-    const { products } = useSelector((state: any) => state.main)
-    
+    // const { products } = useAppSelector((state) => state.main)
+    const products = useAppSelector(state => state.main[productList]);
     
     let sortProdocts = products;
     if(stateSelect === "ascending"){
@@ -47,7 +48,7 @@ const Content = () => {
     return (
         <Paper sx={{p: '10px'}}>
             <Typography variant='h3' fontSize={30} align='center'>
-                {sortProdocts[0].name}
+                {sortProdocts.name}
             </Typography>
             <Stack direction='row' sx={{justifyContent: 'space-between'}} mb={3}>
                 <FormControl sx={{ m: 1, minWidth: 120 }}>

@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Grid, Paper, Stack, Typography } from '@mui/material';
+import { Button, ButtonGroup, Grid, Stack, Typography } from '@mui/material';
 import { NavLink, Outlet } from 'react-router-dom';
 
 export default function User() {
@@ -16,7 +16,6 @@ export default function User() {
           <Typography variant='h6' align='center'>Меню</Typography>
             <ButtonGroup orientation='vertical' fullWidth>
                 {userNav.map((item: any, index: number) => {
-                    console.log(item)
                     return (
                         <NavLink 
                             key={index} 
